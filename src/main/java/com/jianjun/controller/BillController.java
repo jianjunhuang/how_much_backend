@@ -9,6 +9,7 @@ import com.jianjun.entity.bill.BillResponse;
 import com.jianjun.entity.type.Type;
 import com.jianjun.service.IBillService;
 import com.jianjun.service.ITypeService;
+import com.jianjun.service.IWalletService;
 import com.jianjun.utils.ParamsChecker;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,6 +35,9 @@ public class BillController {
     private ITypeService mTypeService;
 
     @Resource
+    private IWalletService mWalletService;
+
+    @Resource
     private UUIDGenerator mUUIDGenerator;
 
     @RequestMapping(produces = "application/json;charset=UTF-8", value = "/list", method = RequestMethod.POST)
@@ -47,6 +51,7 @@ public class BillController {
         List<BillResponse> billResponses = mBillService.getBills(email);
         for (BillResponse billResponse : billResponses) {
             billResponse.setBillTypeList(mTypeService.queryTypes(billResponse.getBillId()));
+            billResponse.setWalletName(mWalletService.requestWallets(billResponse.getWalletId()).getName());
         }
         result.setData(billResponses);
         return result;
@@ -54,7 +59,7 @@ public class BillController {
 
     @RequestMapping(produces = "application/json;charset=UTF-8", value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResponse addBills(HttpServletRequest request, HttpServletResponse response, @RequestBody BaseRequest<AddBillRequest> body) {
+    public BaseResponse<BillResponse> addBills(HttpServletRequest request, HttpServletResponse response, @RequestBody BaseRequest<AddBillRequest> body) {
         BaseResponse result = ParamsChecker.isNull(body);
         if (result.getCode() != Code.SUCCESS) {
             return result;
@@ -70,13 +75,16 @@ public class BillController {
         Date now = new Date();
         billResponse.setCreateDate(now.getTime());
         billResponse.setUpdateDate(now.getTime());
+        billResponse.setTitle(addBillRequest.getTitle());
+        billResponse.setWalletName(mWalletService.requestWallets(billResponse.getWalletId()).getName());
 
         mBillService.addBill(billResponse);
 
         for (String typeId : addBillRequest.getTypeIds()) {
             mTypeService.bindType(billResponse.getBillId(), typeId);
         }
-
+        billResponse.setBillTypeList(mTypeService.queryTypes(billResponse.getBillId()));
+        result.setData(billResponse);
         return result;
     }
 }

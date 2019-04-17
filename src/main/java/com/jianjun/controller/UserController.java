@@ -5,7 +5,7 @@ import com.jianjun.entity.BaseRequest;
 import com.jianjun.entity.BaseResponse;
 import com.jianjun.entity.Code;
 import com.jianjun.entity.user.User;
-import com.jianjun.entity.request.LoginRequest;
+import com.jianjun.entity.user.LoginRequest;
 import com.jianjun.service.ITokenService;
 import com.jianjun.service.IUserService;
 import com.jianjun.utils.FormatChecker;

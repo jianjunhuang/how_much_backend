@@ -21,6 +21,11 @@ public class TypeService implements ITypeService {
     }
 
     @Override
+    public List<BillType> queryAllTypes(String email) {
+        return mTypeMapper.queryAllTypes(email);
+    }
+
+    @Override
     public boolean addTypes(Type type) {
         return mTypeMapper.addTypes(type) >= 0;
     }

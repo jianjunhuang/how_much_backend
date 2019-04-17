@@ -1,0 +1,11 @@
+/home/jianjunhuang/code/java-web/how_much/src/main/java/com/jianjun/entity/User.java
+/home/jianjunhuang/code/java-web/how_much/src/main/java/com/jianjun/controller/TestController.java
+/home/jianjunhuang/code/java-web/how_much/src/main/java/com/jianjun/dao/package-info.java
+/home/jianjunhuang/code/java-web/how_much/src/main/java/com/jianjun/package-info.java
+/home/jianjunhuang/code/java-web/how_much/src/main/java/com/jianjun/dao/impl/UserMapperImp.java
+/home/jianjunhuang/code/java-web/how_much/src/main/java/com/jianjun/service/package-info.java
+/home/jianjunhuang/code/java-web/how_much/src/main/java/com/jianjun/dao/impl/package-info.java
+/home/jianjunhuang/code/java-web/how_much/src/main/java/com/jianjun/dao/IUserMapper.java
+/home/jianjunhuang/code/java-web/how_much/src/main/java/com/jianjun/base/mybatis/UUIDGenerator.java
+/home/jianjunhuang/code/java-web/how_much/src/main/java/com/jianjun/service/impl/package-info.java
+/home/jianjunhuang/code/java-web/how_much/src/main/java/com/jianjun/base/mybatis/MybatisBooleanHandler.java

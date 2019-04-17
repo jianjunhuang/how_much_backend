@@ -5,7 +5,6 @@ import com.jianjun.entity.BaseRequest;
 import com.jianjun.entity.BaseResponse;
 import com.jianjun.entity.Code;
 import com.jianjun.entity.wallet.Wallet;
-import com.jianjun.entity.request.LoginRequest;
 import com.jianjun.service.IWalletService;
 import com.jianjun.utils.EmptyChecker;
 import com.jianjun.utils.ParamsChecker;

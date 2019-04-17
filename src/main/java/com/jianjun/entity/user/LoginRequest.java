@@ -1,4 +1,4 @@
-package com.jianjun.entity.request;
+package com.jianjun.entity.user;
 
 import com.google.gson.annotations.SerializedName;
 

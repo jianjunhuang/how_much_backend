@@ -11,6 +11,15 @@ public class AddBillRequest {
     private String memo;
     private String position;
     private List<String> typeIds;
+    private String title;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public String getEmail() {
         return email;

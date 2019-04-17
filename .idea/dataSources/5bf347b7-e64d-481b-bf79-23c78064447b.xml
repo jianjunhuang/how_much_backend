@@ -973,36 +973,41 @@
       <DataType>varchar(64)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="247" parent="231" name="PRIMARY">
+    <column id="247" parent="231" name="title">
+      <Position>10</Position>
+      <DataType>varchar(64)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="248" parent="231" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>bill_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="248" parent="232" name="bill_id">
+    <column id="249" parent="232" name="bill_id">
       <Position>1</Position>
       <DataType>varchar(64)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="249" parent="232" name="type_id">
+    <column id="250" parent="232" name="type_id">
       <Position>2</Position>
       <DataType>varchar(64)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="250" parent="232" name="is_del">
+    <column id="251" parent="232" name="is_del">
       <Position>3</Position>
       <DataType>tinyint(1)|0s</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="251" parent="232" name="t_bill_type_t_bill_bill_id_fk">
+    <index id="252" parent="232" name="t_bill_type_t_bill_bill_id_fk">
       <ColNames>bill_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="252" parent="232" name="t_bill_type_t_type_type_id_fk">
+    <index id="253" parent="232" name="t_bill_type_t_type_type_id_fk">
       <ColNames>type_id</ColNames>
       <Type>btree</Type>
     </index>
-    <foreign-key id="253" parent="232" name="t_bill_type_t_bill_bill_id_fk">
+    <foreign-key id="254" parent="232" name="t_bill_type_t_bill_bill_id_fk">
       <ColNames>bill_id</ColNames>
       <RefSchemaName>how_much</RefSchemaName>
       <RefTableName>t_bill</RefTableName>
@@ -1010,7 +1015,7 @@
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="254" parent="232" name="t_bill_type_t_type_type_id_fk">
+    <foreign-key id="255" parent="232" name="t_bill_type_t_type_type_id_fk">
       <ColNames>type_id</ColNames>
       <RefSchemaName>how_much</RefSchemaName>
       <RefTableName>t_type</RefTableName>
@@ -1018,134 +1023,134 @@
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="255" parent="233" name="email">
+    <column id="256" parent="233" name="email">
       <Position>1</Position>
       <DataType>varchar(64)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="256" parent="233" name="budget">
+    <column id="257" parent="233" name="budget">
       <Position>2</Position>
       <DataType>decimal(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="257" parent="233" name="t_budget_t_user_email_fk">
+    <index id="258" parent="233" name="t_budget_t_user_email_fk">
       <ColNames>email</ColNames>
       <Type>btree</Type>
     </index>
-    <foreign-key id="258" parent="233" name="t_budget_t_user_email_fk">
+    <foreign-key id="259" parent="233" name="t_budget_t_user_email_fk">
       <ColNames>email</ColNames>
       <RefSchemaName>how_much</RefSchemaName>
       <RefTableName>t_user</RefTableName>
       <RefColNames>email</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="259" parent="234" name="email">
+    <column id="260" parent="234" name="email">
       <Position>1</Position>
       <DataType>varchar(64)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="260" parent="234" name="token">
+    <column id="261" parent="234" name="token">
       <Position>2</Position>
       <DataType>varchar(64)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="261" parent="234" name="update_date">
+    <column id="262" parent="234" name="update_date">
       <Position>3</Position>
       <DataType>mediumtext|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="262" parent="234" name="create_date">
+    <column id="263" parent="234" name="create_date">
       <Position>4</Position>
       <DataType>mediumtext|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="263" parent="234" name="t_token_email_uindex">
+    <index id="264" parent="234" name="t_token_email_uindex">
       <ColNames>email</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="264" parent="234" name="t_token_token_uindex">
+    <index id="265" parent="234" name="t_token_token_uindex">
       <ColNames>token</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="265" parent="234" name="t_token_token_uindex_2">
+    <index id="266" parent="234" name="t_token_token_uindex_2">
       <ColNames>token</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="266" parent="234" name="t_token_email_uindex">
+    <key id="267" parent="234" name="t_token_email_uindex">
       <ColNames>email</ColNames>
       <UnderlyingIndexName>t_token_email_uindex</UnderlyingIndexName>
     </key>
-    <key id="267" parent="234" name="t_token_token_uindex">
+    <key id="268" parent="234" name="t_token_token_uindex">
       <ColNames>token</ColNames>
       <UnderlyingIndexName>t_token_token_uindex</UnderlyingIndexName>
     </key>
-    <key id="268" parent="234" name="t_token_token_uindex_2">
+    <key id="269" parent="234" name="t_token_token_uindex_2">
       <ColNames>token</ColNames>
       <UnderlyingIndexName>t_token_token_uindex_2</UnderlyingIndexName>
     </key>
-    <foreign-key id="269" parent="234" name="t_token_t_user_email_fk">
+    <foreign-key id="270" parent="234" name="t_token_t_user_email_fk">
       <ColNames>email</ColNames>
       <RefSchemaName>how_much</RefSchemaName>
       <RefTableName>t_user</RefTableName>
       <RefColNames>email</RefColNames>
     </foreign-key>
-    <column id="270" parent="235" name="email">
+    <column id="271" parent="235" name="email">
       <Position>1</Position>
       <DataType>varchar(64)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="271" parent="235" name="type">
+    <column id="272" parent="235" name="type">
       <Position>2</Position>
       <DataType>varchar(64)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="272" parent="235" name="create_date">
+    <column id="273" parent="235" name="create_date">
       <Position>3</Position>
       <DataType>mediumtext|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="273" parent="235" name="update_date">
+    <column id="274" parent="235" name="update_date">
       <Position>4</Position>
       <DataType>mediumtext|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="274" parent="235" name="is_del">
+    <column id="275" parent="235" name="is_del">
       <Position>5</Position>
       <DataType>tinyint(1)|0s</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="275" parent="235" name="type_id">
+    <column id="276" parent="235" name="type_id">
       <Position>6</Position>
       <DataType>varchar(64)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="276" parent="235" name="t_type_type_id_uindex">
+    <index id="277" parent="235" name="t_type_type_id_uindex">
       <ColNames>type_id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="277" parent="235" name="t_type_t_user_email_fk">
+    <index id="278" parent="235" name="t_type_t_user_email_fk">
       <ColNames>email</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="278" parent="235" name="PRIMARY">
+    <key id="279" parent="235" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>type_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="279" parent="235" name="t_type_type_id_uindex">
+    <key id="280" parent="235" name="t_type_type_id_uindex">
       <ColNames>type_id</ColNames>
       <UnderlyingIndexName>t_type_type_id_uindex</UnderlyingIndexName>
     </key>
-    <foreign-key id="280" parent="235" name="t_type_t_user_email_fk">
+    <foreign-key id="281" parent="235" name="t_type_t_user_email_fk">
       <ColNames>email</ColNames>
       <RefSchemaName>how_much</RefSchemaName>
       <RefTableName>t_user</RefTableName>
@@ -1153,100 +1158,100 @@
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="281" parent="236" name="email">
+    <column id="282" parent="236" name="email">
       <Position>1</Position>
       <DataType>varchar(64)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="282" parent="236" name="username">
+    <column id="283" parent="236" name="username">
       <Position>2</Position>
       <DataType>varchar(64)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="283" parent="236" name="create_date">
+    <column id="284" parent="236" name="create_date">
       <Position>3</Position>
       <DataType>mediumtext|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="284" parent="236" name="update_date">
+    <column id="285" parent="236" name="update_date">
       <Position>4</Position>
       <DataType>mediumtext|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="285" parent="236" name="is_del">
+    <column id="286" parent="236" name="is_del">
       <Position>5</Position>
       <DataType>tinyint(1)|0s</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="286" parent="236" name="t_user_email_uindex">
+    <index id="287" parent="236" name="t_user_email_uindex">
       <ColNames>email</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="287" parent="236" name="PRIMARY">
+    <key id="288" parent="236" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>email</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="288" parent="236" name="t_user_email_uindex">
+    <key id="289" parent="236" name="t_user_email_uindex">
       <ColNames>email</ColNames>
       <UnderlyingIndexName>t_user_email_uindex</UnderlyingIndexName>
     </key>
-    <column id="289" parent="237" name="email">
+    <column id="290" parent="237" name="email">
       <Position>1</Position>
       <DataType>varchar(64)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="290" parent="237" name="wallet_name">
+    <column id="291" parent="237" name="wallet_name">
       <Position>2</Position>
       <DataType>varchar(64)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="291" parent="237" name="total">
+    <column id="292" parent="237" name="total">
       <Position>3</Position>
       <DataType>decimal(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="292" parent="237" name="liability">
+    <column id="293" parent="237" name="liability">
       <Position>4</Position>
       <DataType>decimal(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="293" parent="237" name="create_date">
+    <column id="294" parent="237" name="create_date">
       <Position>5</Position>
       <DataType>mediumtext|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="294" parent="237" name="update_date">
+    <column id="295" parent="237" name="update_date">
       <Position>6</Position>
       <DataType>mediumtext|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="295" parent="237" name="wallet_id">
+    <column id="296" parent="237" name="wallet_id">
       <Position>7</Position>
       <DataType>varchar(64)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="296" parent="237" name="is_del">
+    <column id="297" parent="237" name="is_del">
       <Position>8</Position>
       <DataType>tinyint(1)|0s</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="297" parent="237" name="t_wallet_t_user_email_fk">
+    <index id="298" parent="237" name="t_wallet_t_user_email_fk">
       <ColNames>email</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="298" parent="237" name="PRIMARY">
+    <key id="299" parent="237" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>wallet_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="299" parent="237" name="t_wallet_t_user_email_fk">
+    <foreign-key id="300" parent="237" name="t_wallet_t_user_email_fk">
       <ColNames>email</ColNames>
       <RefSchemaName>how_much</RefSchemaName>
       <RefTableName>t_user</RefTableName>

@@ -47,4 +47,10 @@ public class TypeMapperImpl implements ITypeMapper {
         map.put("type_id", typeId);
         return sqlSessionTemplate.update("unbindType", map);
     }
+
+    @Override
+    public List<BillType> queryAllTypes(String email) {
+
+        return sqlSessionTemplate.selectList("queryAllTypes", email);
+    }
 }

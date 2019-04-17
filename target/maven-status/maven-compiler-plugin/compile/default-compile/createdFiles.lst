@@ -1,0 +1,6 @@
+com/jianjun/base/mybatis/UUIDGenerator.class
+com/jianjun/dao/impl/UserMapperImp.class
+com/jianjun/entity/User.class
+com/jianjun/base/mybatis/MybatisBooleanHandler.class
+com/jianjun/dao/IUserMapper.class
+com/jianjun/controller/TestController.class

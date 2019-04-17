@@ -18,4 +18,5 @@ public interface ITypeMapper {
 
     int unbindType(@Param("bill_id") String billId, @Param("type_id") String typeId);
 
+    List<BillType> queryAllTypes(@Param("email") String email);
 }
