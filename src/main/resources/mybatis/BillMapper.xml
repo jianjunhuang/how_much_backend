@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jianjun.dao.IBillMapper">
+
+    <select id="getBills">
+        select *
+        from t_bill
+        where email = #{email}
+          and is_del = false;
+    </select>
+
+    <insert id="addBill">
+        insert into t_bill (email, create_date, update_date, bill_id, wallet_id, money, memo, position)
+        values (#{email}, #{createDate}, #{updateDate}, #{billId}, #{walletId}, #{money}, #{memo}, #{position})
+    </insert>
+
+    <update id="updateBill">
+        update t_bill
+        set update_date = #{upateDate},
+            wallet_id   = #{walletId},
+            money       = #{money},
+            position    = #{position},
+            memo        = #{memo}
+        where bill_id = #{billId}
+    </update>
+
+    <update id="deleteBill">
+        update t_bill
+        set is_del = true
+        where bill_id = #{bill_id};
+    </update>
+
+    <resultMap id="Bill" type="com.jianjun.entity.bill.BillResponse">
+        <id property="billId" column="bill_id"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateDate" column="update_date"/>
+        <result property="email" column="email"/>
+        <result property="walletId" column="wallet_id"/>
+        <result property="money" column="money"/>
+        <result property="memo" column="memo"/>
+    </resultMap>
+</mapper>

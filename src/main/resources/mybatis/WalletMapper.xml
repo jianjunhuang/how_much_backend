@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jianjun.dao.IWalletMapper">
+
+    <select id="queryWallets" resultMap="Wallet">
+        select *
+        from t_wallet
+        where email = #{email}
+    </select>
+
+    <insert id="addWallet">
+        insert into t_wallet (email, wallet_id, create_date, update_date, wallet_name, total, liability)
+        values (#{email}, #{walletId}, #{createDate}, #{updateDate}, #{name}, #{total}, #{liability})
+    </insert>
+
+    <update id="updateUser">
+        update t_wallet
+        set wallet_name = #{name},
+            total       = #{total},
+            liability   = #{liability},
+            update_date = #{updateDate}
+        where email = #{email}
+    </update>
+
+    <select id="requestWallets" resultMap="Wallet">
+        select *
+        from t_wallet
+        where wallet_id = #{walletId}
+    </select>
+
+    <resultMap id="Wallet" type="com.jianjun.entity.wallet.Wallet">
+        <id property="walletId" column="wallet_id"/>
+        <result property="email" column="email"/>
+        <result property="name" column="wallet_name"/>
+        <result property="total" column="total"/>
+        <result property="liability" column="liability"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateDate" column="update_date"/>
+    </resultMap>
+</mapper>

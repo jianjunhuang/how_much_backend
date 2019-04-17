@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jianjun.dao.IUserMapper">
+
+    <select id="getUserByEmail" resultMap="User">
+        select *
+        from t_user
+        where t_user.email = #{email}
+    </select>
+
+    <insert id="addUser">
+        insert into t_user (email, username, create_date, update_date)
+        values (#{email}, #{username}, #{createDate}, #{updateDate})
+    </insert>
+
+    <insert id="addToken">
+        insert into t_token (email, token, update_date, create_date)
+        values (#{email}, #{token}, #{updateDate}, #{createDate})
+    </insert>
+
+    <update id="updateUsr">
+        update t_user
+        set username    = #{username},
+            update_date = #{updateDate}
+        where email = #{email}
+    </update>
+
+    <select id="getToken" resultMap="Token">
+        select *
+        from t_token
+        where email = #{email}
+    </select>
+
+    <update id="updateToken">
+        update t_token
+        set token       = #{token},
+            create_date = #{createDate},
+            update_date = #{updateDate}
+        where email = #{email}
+    </update>
+    <resultMap id="User" type="com.jianjun.entity.user.User">
+        <id property="email" column="email"/>
+        <result property="username" column="username"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateDate" column="update_date"/>
+    </resultMap>
+
+    <resultMap id="Token" type="com.jianjun.entity.user.Token">
+        <result property="token" column="token"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateDate" column="update_date"/>
+        <result property="email" column="email"/>
+    </resultMap>
+</mapper>

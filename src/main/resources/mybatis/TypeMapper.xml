@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jianjun.dao.ITypeMapper">
+
+    <select id="queryTypes">
+        select t_type.type_id, t_type.type
+        from t_type,
+             t_bill_type
+        where t_type.type_id = t_bill_type.type_id
+          and t_bill_type.bill_id = #{bill_id}
+          and t_type.is_del = false
+    </select>
+
+    <insert id="addTypes">
+        insert into t_type (email, type, create_date, update_date, type_id)
+        values (#{email}, #{type}, #{createDate}, #{updateDate}, #{typeId})
+    </insert>
+
+    <insert id="bindType">
+        insert into t_bill_type (bill_id, type_id)
+        values (#{bill_id}, #{type_id})
+    </insert>
+
+    <update id="deleteType">
+        update t_type
+        set t_type.is_del = true
+        where type_id = #{type_id}
+    </update>
+
+    <update id="unbindType">
+        update t_bill_type
+        set t_bill_type.is_del = true
+        where t_bill_type.type_id = #{type_id}
+          and t_bill_type.bill_id = #{bill_id}
+    </update>
+
+    <resultMap id="Type" type="com.jianjun.entity.bill.BillType">
+        <result property="typeId" column="type_id"/>
+        <result property="type" column="type"/>
+    </resultMap>
+</mapper>
