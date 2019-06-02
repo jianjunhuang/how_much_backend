@@ -56,4 +56,11 @@ public class TokenServiceImpl implements ITokenService {
         mUserMapper.updateToken(t);
         return true;
     }
+
+    @Override
+    public String requestEmail(String token) {
+        return mUserMapper.getEmail(token);
+    }
+
+
 }

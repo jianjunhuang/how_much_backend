@@ -1,17 +1,46 @@
 package com.jianjun.entity.bill;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 public class AddBillRequest {
 
-    private String email;
     private String walletId;
     private BigDecimal money;
     private String memo;
     private String position;
     private List<String> typeIds;
     private String title;
+    private Long date;
+    private int tag;
+
+    public int getTag() {
+        return tag;
+    }
+
+    public void setTag(int tag) {
+        this.tag = tag;
+    }
+
+    public Long getDate() {
+        return date;
+    }
+
+    public void setDate(Long date) {
+        this.date = date;
+    }
+
+    public long getData() {
+        if (date == null) {
+            return new Date().getTime();
+        }
+        return date;
+    }
+
+    public void setDate(long date) {
+        this.date = date;
+    }
 
     public String getTitle() {
         return title;
@@ -19,14 +48,6 @@ public class AddBillRequest {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getWalletId() {

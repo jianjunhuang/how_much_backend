@@ -8,6 +8,7 @@ import com.jianjun.entity.bill.AddBillRequest;
 import com.jianjun.entity.bill.BillType;
 import com.jianjun.entity.type.Type;
 import com.jianjun.entity.type.TypeRequest;
+import com.jianjun.service.ITokenService;
 import com.jianjun.service.ITypeService;
 import com.jianjun.utils.ParamsChecker;
 import org.springframework.stereotype.Controller;
@@ -32,6 +33,9 @@ public class TypeController {
     @Resource
     private UUIDGenerator mUUIDGenerator;
 
+    @Resource
+    private ITokenService mTokenService;
+
     @RequestMapping(produces = "application/json;charset=UTF-8", value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public BaseResponse<Type> addType(HttpServletRequest request, HttpServletResponse response, @RequestBody BaseRequest<TypeRequest> body) {
@@ -39,9 +43,12 @@ public class TypeController {
         if (result.getCode() != Code.SUCCESS) {
             return result;
         }
+        //todo check is token valied
+        String token = body.getToken();
+        String email = mTokenService.requestEmail(token);
         TypeRequest typeRequest = body.getData();
         Type type = new Type();
-        type.setEmail(typeRequest.getEmail());
+        type.setEmail(email);
         type.setType(typeRequest.getType());
         Date now = new Date();
         type.setUpdateDate(now.getTime());
@@ -80,12 +87,16 @@ public class TypeController {
 
     @RequestMapping(produces = "application/json;charset=UTF-8", value = "/list", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResponse<List<BillType>> queryAllType(HttpServletRequest request, HttpServletResponse response, @RequestBody BaseRequest<String> body) {
+    public BaseResponse<List<BillType>> queryAllType(HttpServletRequest request, HttpServletResponse response, @RequestBody BaseRequest body) {
         BaseResponse result = ParamsChecker.isNull(body);
         if (result.getCode() != Code.SUCCESS) {
             return result;
         }
-        List<BillType> types = mTypeService.queryAllTypes(body.getData());
+        //todo check is token valied
+        String token = body.getToken();
+        String email = mTokenService.requestEmail(token);
+
+        List<BillType> types = mTypeService.queryAllTypes(email);
 
         result.setData(types);
         return result;

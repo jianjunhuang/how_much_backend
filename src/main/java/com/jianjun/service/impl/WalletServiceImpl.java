@@ -33,4 +33,9 @@ public class WalletServiceImpl implements IWalletService {
     public boolean updateWallet(Wallet wallet) {
         return mWalletMapper.updateWallet(wallet) >= 0;
     }
+
+    @Override
+    public boolean deleteWallet(String walletId) {
+        return mWalletMapper.deleteWallet(walletId) >= 0;
+    }
 }

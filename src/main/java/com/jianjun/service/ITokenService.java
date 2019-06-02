@@ -8,4 +8,5 @@ public interface ITokenService {
 
     boolean isValid(String email, Token token);
 
+    String requestEmail(String token);
 }

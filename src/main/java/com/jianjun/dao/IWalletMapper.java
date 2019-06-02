@@ -14,4 +14,6 @@ public interface IWalletMapper {
     Wallet requestWallets(@Param("walletId") String walletId);
 
     int updateWallet(Wallet wallet);
+
+    int deleteWallet(@Param("walletId") String walletId);
 }

@@ -1,6 +1,9 @@
 package com.jianjun.service;
 
+import com.jianjun.entity.user.Budget;
 import com.jianjun.entity.user.User;
+
+import java.math.BigDecimal;
 
 public interface IUserService {
 
@@ -10,4 +13,13 @@ public interface IUserService {
 
     boolean updateUser(User user);
 
+    Budget requestBudget(String email);
+
+    boolean addBudget(String email, BigDecimal budget);
+
+    boolean updateBudget(String email, BigDecimal budget);
+
+    String getCode(String email);
+
+    void updateCode(String email, String code);
 }

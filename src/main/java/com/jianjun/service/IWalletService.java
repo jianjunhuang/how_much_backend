@@ -12,4 +12,6 @@ public interface IWalletService {
     Wallet requestWallets(String walletId);
 
     boolean updateWallet(Wallet wallet);
+
+    boolean deleteWallet(String walletId);
 }

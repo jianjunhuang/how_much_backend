@@ -5,9 +5,12 @@ import com.jianjun.entity.BaseRequest;
 import com.jianjun.entity.BaseResponse;
 import com.jianjun.entity.Code;
 import com.jianjun.entity.wallet.Wallet;
+import com.jianjun.service.ITokenService;
+import com.jianjun.service.IUserService;
 import com.jianjun.service.IWalletService;
 import com.jianjun.utils.EmptyChecker;
 import com.jianjun.utils.ParamsChecker;
+import org.apache.http.util.TextUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,11 +31,14 @@ public class WalletController {
     private IWalletService mWalletService;
 
     @Resource
+    private ITokenService mTokenService;
+
+    @Resource
     private UUIDGenerator uuidGenerator;
 
     @RequestMapping(produces = "application/json;charset=UTF-8", value = "/list", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResponse<List<Wallet>> queryWallets(HttpServletRequest request, HttpServletResponse response, @RequestBody BaseRequest<String> body) {
+    public BaseResponse<List<Wallet>> queryWallets(HttpServletRequest request, HttpServletResponse response, @RequestBody BaseRequest body) {
 
         BaseResponse<List<Wallet>> result = ParamsChecker.isNull(body);
 
@@ -41,7 +47,15 @@ public class WalletController {
         }
         //todo check token
 
-        String email = body.getData();
+        String token = body.getToken();
+
+        String email = mTokenService.requestEmail(token);
+
+        if (TextUtils.isEmpty(email)) {
+            result.setCode(Code.PARAMTES_ERR);
+            result.setMsg("token error");
+            return result;
+        }
 
         List<Wallet> list = mWalletService.queryWallets(email);
 
@@ -56,6 +70,15 @@ public class WalletController {
         BaseResponse<Wallet> result = ParamsChecker.isNull(body);
 
         if (result.getCode() != Code.SUCCESS) {
+            return result;
+        }
+        String token = body.getToken();
+
+        String email = mTokenService.requestEmail(token);
+
+        if (TextUtils.isEmpty(email)) {
+            result.setCode(Code.PARAMTES_ERR);
+            result.setMsg("token error");
             return result;
         }
 
@@ -73,11 +96,28 @@ public class WalletController {
         wallet.setWalletId(uuidGenerator.generateUUID());
         wallet.setCreateDate(time);
         wallet.setUpdateDate(time);
+        wallet.setEmail(email);
         result.setData(wallet);
         if (!mWalletService.addWallet(wallet)) {
             result.setCode(Code.FAILED);
             result.setMsg("insert failed");
         }
+        return result;
+    }
+
+    @RequestMapping(produces = "application/json;charset=UTF-8", value = "/del", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResponse deleteWallets(HttpServletRequest request, HttpServletResponse response, @RequestBody BaseRequest<String> body) {
+
+        BaseResponse result = ParamsChecker.isNull(body);
+
+        if (result.getCode() != Code.SUCCESS) {
+            return result;
+        }
+
+        String walletId = body.getData();
+
+        mWalletService.deleteWallet(walletId);
         return result;
     }
 }

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_how_much" default="compile.module.how_much">
+  <dirname property="module.how_much.basedir" file="${ant.file.module_how_much}"/>
+  
+  <property name="module.jdk.home.how_much" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.how_much" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.how_much" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.how_much" value="-encoding UTF-8 -source 8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="how_much.output.dir" value="${module.how_much.basedir}/target/classes"/>
+  <property name="how_much.testoutput.dir" value="${module.how_much.basedir}/target/test-classes"/>
+  
+  <path id="how_much.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="how_much.module.production.classpath">
+    <path refid="${module.jdk.classpath.how_much}"/>
+    <path refid="library.maven:_javax.servlet:jstl:1.2.classpath"/>
+    <path refid="library.maven:_javax.servlet:javax.servlet-api:3.1.0.classpath"/>
+    <path refid="library.maven:_javax.servlet.jsp:jsp-api:2.1.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-webmvc:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-aop:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-beans:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-core:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jcl:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-expression:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-web:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-context:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-context-support:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-test:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-aspects:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.aspectj:aspectjweaver:1.8.13.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-tx:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-websocket:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jdbc:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework.security:spring-security-web:5.0.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.security:spring-security-core:5.0.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.security:spring-security-config:5.0.4.release.classpath"/>
+    <path refid="library.maven:_commons-fileupload:commons-fileupload:1.3.1.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:2.2.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.4.classpath"/>
+    <path refid="library.maven:_com.google.code.gson:gson:2.8.3.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.9.5.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.9.5.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.9.5.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.9.5.classpath"/>
+    <path refid="library.maven:_net.sf.ehcache:ehcache-core:2.6.9.classpath"/>
+    <path refid="library.maven:_net.sf.ehcache:ehcache-web:2.0.4.classpath"/>
+    <path refid="library.maven:_com.googlecode.ehcache-spring-annotations:ehcache-spring-annotations:1.1.2.classpath"/>
+    <path refid="library.maven:_aopalliance:aopalliance:1.0.classpath"/>
+    <path refid="library.maven:_commons-codec:commons-codec:1.4.classpath"/>
+    <path refid="library.maven:_mysql:mysql-connector-java:5.1.30.classpath"/>
+    <path refid="library.maven:_org.mybatis:mybatis:3.4.4.classpath"/>
+    <path refid="library.maven:_org.mybatis:mybatis-spring:1.3.1.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.7.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-log4j12:1.7.7.classpath"/>
+    <path refid="library.maven:_log4j:log4j:1.2.17.classpath"/>
+    <path refid="library.maven:_org.slf4j:jcl-over-slf4j:1.7.7.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpclient:4.5.2.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpcore:4.4.4.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.2.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpmime:4.3.3.classpath"/>
+    <path refid="library.maven:_com.alibaba:druid:1.0.31.classpath"/>
+    <pathelement location="${basedir}/../../../../../usr/lib/jvm/java-8-openjdk-amd64/lib/jconsole.jar"/>
+    <pathelement location="${basedir}/../../../../../usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar"/>
+  </path>
+  
+  <path id="how_much.runtime.production.module.classpath">
+    <pathelement location="${how_much.output.dir}"/>
+    <path refid="library.maven:_javax.servlet:jstl:1.2.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-webmvc:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-aop:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-beans:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-core:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jcl:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-expression:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-web:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-context:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-context-support:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-aspects:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.aspectj:aspectjweaver:1.8.13.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-tx:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-websocket:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jdbc:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework.security:spring-security-web:5.0.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.security:spring-security-core:5.0.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.security:spring-security-config:5.0.4.release.classpath"/>
+    <path refid="library.maven:_commons-fileupload:commons-fileupload:1.3.1.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:2.2.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.4.classpath"/>
+    <path refid="library.maven:_com.google.code.gson:gson:2.8.3.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.9.5.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.9.5.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.9.5.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.9.5.classpath"/>
+    <path refid="library.maven:_net.sf.ehcache:ehcache-core:2.6.9.classpath"/>
+    <path refid="library.maven:_net.sf.ehcache:ehcache-web:2.0.4.classpath"/>
+    <path refid="library.maven:_com.googlecode.ehcache-spring-annotations:ehcache-spring-annotations:1.1.2.classpath"/>
+    <path refid="library.maven:_aopalliance:aopalliance:1.0.classpath"/>
+    <path refid="library.maven:_commons-codec:commons-codec:1.4.classpath"/>
+    <path refid="library.maven:_mysql:mysql-connector-java:5.1.30.classpath"/>
+    <path refid="library.maven:_org.mybatis:mybatis:3.4.4.classpath"/>
+    <path refid="library.maven:_org.mybatis:mybatis-spring:1.3.1.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.7.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-log4j12:1.7.7.classpath"/>
+    <path refid="library.maven:_log4j:log4j:1.2.17.classpath"/>
+    <path refid="library.maven:_org.slf4j:jcl-over-slf4j:1.7.7.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpclient:4.5.2.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpcore:4.4.4.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.2.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpmime:4.3.3.classpath"/>
+    <path refid="library.maven:_com.alibaba:druid:1.0.31.classpath"/>
+    <pathelement location="${basedir}/../../../../../usr/lib/jvm/java-8-openjdk-amd64/lib/jconsole.jar"/>
+    <pathelement location="${basedir}/../../../../../usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar"/>
+  </path>
+  
+  <path id="how_much.module.classpath">
+    <path refid="${module.jdk.classpath.how_much}"/>
+    <pathelement location="${how_much.output.dir}"/>
+    <path refid="library.maven:_javax.servlet:jstl:1.2.classpath"/>
+    <path refid="library.maven:_javax.servlet:javax.servlet-api:3.1.0.classpath"/>
+    <path refid="library.maven:_javax.servlet.jsp:jsp-api:2.1.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-webmvc:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-aop:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-beans:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-core:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jcl:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-expression:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-web:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-context:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-context-support:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-test:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-aspects:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.aspectj:aspectjweaver:1.8.13.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-tx:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-websocket:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jdbc:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework.security:spring-security-web:5.0.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.security:spring-security-core:5.0.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.security:spring-security-config:5.0.4.release.classpath"/>
+    <path refid="library.maven:_commons-fileupload:commons-fileupload:1.3.1.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:2.2.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.4.classpath"/>
+    <path refid="library.maven:_com.google.code.gson:gson:2.8.3.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.9.5.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.9.5.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.9.5.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.9.5.classpath"/>
+    <path refid="library.maven:_net.sf.ehcache:ehcache-core:2.6.9.classpath"/>
+    <path refid="library.maven:_net.sf.ehcache:ehcache-web:2.0.4.classpath"/>
+    <path refid="library.maven:_com.googlecode.ehcache-spring-annotations:ehcache-spring-annotations:1.1.2.classpath"/>
+    <path refid="library.maven:_aopalliance:aopalliance:1.0.classpath"/>
+    <path refid="library.maven:_commons-codec:commons-codec:1.4.classpath"/>
+    <path refid="library.maven:_mysql:mysql-connector-java:5.1.30.classpath"/>
+    <path refid="library.maven:_org.mybatis:mybatis:3.4.4.classpath"/>
+    <path refid="library.maven:_org.mybatis:mybatis-spring:1.3.1.classpath"/>
+    <path refid="library.maven:_junit:junit:4.12.classpath"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.7.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-log4j12:1.7.7.classpath"/>
+    <path refid="library.maven:_log4j:log4j:1.2.17.classpath"/>
+    <path refid="library.maven:_org.slf4j:jcl-over-slf4j:1.7.7.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpclient:4.5.2.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpcore:4.4.4.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.2.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpmime:4.3.3.classpath"/>
+    <path refid="library.maven:_com.alibaba:druid:1.0.31.classpath"/>
+    <pathelement location="${basedir}/../../../../../usr/lib/jvm/java-8-openjdk-amd64/lib/jconsole.jar"/>
+    <pathelement location="${basedir}/../../../../../usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar"/>
+  </path>
+  
+  <path id="how_much.runtime.module.classpath">
+    <pathelement location="${how_much.testoutput.dir}"/>
+    <pathelement location="${how_much.output.dir}"/>
+    <path refid="library.maven:_javax.servlet:jstl:1.2.classpath"/>
+    <path refid="library.maven:_javax.servlet:javax.servlet-api:3.1.0.classpath"/>
+    <path refid="library.maven:_javax.servlet.jsp:jsp-api:2.1.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-webmvc:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-aop:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-beans:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-core:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jcl:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-expression:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-web:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-context:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-context-support:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-test:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-aspects:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.aspectj:aspectjweaver:1.8.13.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-tx:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-websocket:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jdbc:5.0.5.release.classpath"/>
+    <path refid="library.maven:_org.springframework.security:spring-security-web:5.0.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.security:spring-security-core:5.0.4.release.classpath"/>
+    <path refid="library.maven:_org.springframework.security:spring-security-config:5.0.4.release.classpath"/>
+    <path refid="library.maven:_commons-fileupload:commons-fileupload:1.3.1.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:2.2.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.4.classpath"/>
+    <path refid="library.maven:_com.google.code.gson:gson:2.8.3.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.9.5.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.9.5.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.9.5.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.9.5.classpath"/>
+    <path refid="library.maven:_net.sf.ehcache:ehcache-core:2.6.9.classpath"/>
+    <path refid="library.maven:_net.sf.ehcache:ehcache-web:2.0.4.classpath"/>
+    <path refid="library.maven:_com.googlecode.ehcache-spring-annotations:ehcache-spring-annotations:1.1.2.classpath"/>
+    <path refid="library.maven:_aopalliance:aopalliance:1.0.classpath"/>
+    <path refid="library.maven:_commons-codec:commons-codec:1.4.classpath"/>
+    <path refid="library.maven:_mysql:mysql-connector-java:5.1.30.classpath"/>
+    <path refid="library.maven:_org.mybatis:mybatis:3.4.4.classpath"/>
+    <path refid="library.maven:_org.mybatis:mybatis-spring:1.3.1.classpath"/>
+    <path refid="library.maven:_junit:junit:4.12.classpath"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.7.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-log4j12:1.7.7.classpath"/>
+    <path refid="library.maven:_log4j:log4j:1.2.17.classpath"/>
+    <path refid="library.maven:_org.slf4j:jcl-over-slf4j:1.7.7.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpclient:4.5.2.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpcore:4.4.4.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.2.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpmime:4.3.3.classpath"/>
+    <path refid="library.maven:_com.alibaba:druid:1.0.31.classpath"/>
+    <pathelement location="${basedir}/../../../../../usr/lib/jvm/java-8-openjdk-amd64/lib/jconsole.jar"/>
+    <pathelement location="${basedir}/../../../../../usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.how_much">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.how_much">
+    <patternset refid="excluded.from.module.how_much"/>
+  </patternset>
+  
+  <path id="how_much.module.sourcepath">
+    <dirset dir="${module.how_much.basedir}">
+      <include name="src/main/java"/>
+      <include name="src/main/resources"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.how_much" depends="compile.module.how_much.production,compile.module.how_much.tests" description="Compile module how_much"/>
+  
+  <target name="compile.module.how_much.production" depends="register.custom.compilers" description="Compile module how_much; production classes">
+    <mkdir dir="${how_much.output.dir}"/>
+    <javac2 destdir="${how_much.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.how_much}/javac">
+      <compilerarg line="${compiler.args.how_much}"/>
+      <bootclasspath refid="how_much.module.bootclasspath"/>
+      <classpath refid="how_much.module.production.classpath"/>
+      <src refid="how_much.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.how_much"/>
+    </javac2>
+    
+    <copy todir="${how_much.output.dir}">
+      <fileset dir="${module.how_much.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.how_much.basedir}/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.how_much.tests" depends="register.custom.compilers,compile.module.how_much.production" description="compile module how_much; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.how_much" description="cleanup module">
+    <delete dir="${how_much.output.dir}"/>
+    <delete dir="${how_much.testoutput.dir}"/>
+  </target>
+</project>

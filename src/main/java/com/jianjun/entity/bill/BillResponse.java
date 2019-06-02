@@ -19,6 +19,15 @@ public class BillResponse {
     private String WalletName;
     private String WalletId;
     private String title;
+    private int tag;
+
+    public int getTag() {
+        return tag;
+    }
+
+    public void setTag(int tag) {
+        this.tag = tag;
+    }
 
     public String getTitle() {
         return title;

@@ -34,4 +34,9 @@ public class WalletMapperImp implements IWalletMapper {
     public int updateWallet(Wallet wallet) {
         return sqlSessionTemplate.update("updateWallet", wallet);
     }
+
+    @Override
+    public int deleteWallet(String walletId) {
+        return sqlSessionTemplate.update("deleteWallet", walletId);
+    }
 }

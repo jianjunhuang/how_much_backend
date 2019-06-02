@@ -8,11 +8,43 @@
         select *
         from t_bill
         where email = #{email}
-          and is_del = false;
+          and is_del = false
+        order by update_date;
+    </select>
+    <select id="getRegularBills" resultMap="Bill">
+        select *
+        from t_bill
+        where email = #{email}
+          and is_del = false
+          and tag = 1
+        order by update_date desc;
+    </select>
+
+    <select id="queryBillByType" resultMap="Bill">
+        select *
+        from t_bill
+        where t_bill.bill_id in (select t_bill_type.bill_id from t_bill_type where type_id = #{typeId})
+        order by update_date desc;
+    </select>
+
+    <select id="queryBillByWallet" resultMap="Bill">
+        select *
+        from t_bill
+        where wallet_id = #{walletId}
+        order by update_date desc;
+    </select>
+
+    <select id="getBillsByDate" resultMap="Bill">
+        select *
+        from t_bill
+        where email = #{email}
+          and is_del = false
+          and update_date &gt;= #{start}
+          and update_date &lt;= #{end};
     </select>
 
     <insert id="addBill">
-        insert into t_bill (email, create_date, update_date, bill_id, wallet_id, money, memo, position, title)
+        insert into t_bill (email, create_date, update_date, bill_id, wallet_id, money, memo, position, title, tag)
         values (#{email},
                 #{createDate},
                 #{updateDate},
@@ -21,7 +53,8 @@
                 #{money},
                 #{memo},
                 #{position},
-                #{title})
+                #{title},
+                #{tag})
     </insert>
 
     <update id="updateBill">

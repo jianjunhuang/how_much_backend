@@ -8,6 +8,7 @@
         select *
         from t_wallet
         where email = #{email}
+          and is_del = false
     </select>
 
     <insert id="addWallet">
@@ -15,13 +16,14 @@
         values (#{email}, #{walletId}, #{createDate}, #{updateDate}, #{name}, #{total}, #{liability})
     </insert>
 
-    <update id="updateUser">
+    <update id="updateWallet">
         update t_wallet
         set wallet_name = #{name},
             total       = #{total},
             liability   = #{liability},
             update_date = #{updateDate}
         where email = #{email}
+          and wallet_id = #{walletId}
     </update>
 
     <select id="requestWallets" resultMap="Wallet">
@@ -29,6 +31,12 @@
         from t_wallet
         where wallet_id = #{walletId}
     </select>
+
+    <update id="deleteWallet">
+        update t_wallet
+        set t_wallet.is_del = true
+        where wallet_id = #{walletId}
+    </update>
 
     <resultMap id="Wallet" type="com.jianjun.entity.wallet.Wallet">
         <id property="walletId" column="wallet_id"/>

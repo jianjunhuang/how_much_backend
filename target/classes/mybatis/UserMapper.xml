@@ -53,4 +53,54 @@
         <result property="updateDate" column="update_date"/>
         <result property="email" column="email"/>
     </resultMap>
+
+    <select id="getEmail" resultMap="Email">
+        select t_token.email
+        from t_token
+        where t_token.token = #{token}
+    </select>
+
+    <select id="requestBudget" resultMap="Budget">
+        select t_budget.budget
+        from t_budget
+        where email = #{email}
+    </select>
+
+    <insert id="addBudget">
+        insert into t_budget (email, budget)
+        values (#{email}, #{budget})
+    </insert>
+
+    <update id="updateBudget">
+        update t_budget
+        set t_budget.budget = #{budget}
+        where t_budget.email = #{email}
+    </update>
+
+    <select id="getCode" resultMap="LoginCode">
+        select code
+        from t_email_code
+        where email = #{email}
+    </select>
+
+    <insert id="insertCode">
+        insert into t_email_code (email, code)
+        values (#{email}, #{code});
+    </insert>
+
+    <update id="updateCode">
+        update t_email_code
+        set code = #{code}
+        where email = #{email}
+    </update>
+    <resultMap id="Budget" type="com.jianjun.entity.user.Budget">
+        <result property="budget" column="budget"/>
+    </resultMap>
+    <resultMap id="Email" type="com.jianjun.entity.user.Email">
+        <result property="email" column="email"/>
+    </resultMap>
+    <resultMap id="LoginCode" type="com.jianjun.entity.user.LoginCode">
+        <result property="code" column="code"/>
+        <result property="email" column="email"/>
+    </resultMap>
 </mapper>
